@@ -9,8 +9,9 @@ def find_git_repos(dir):
     return repos
 				
 def main():
-	print "running"
-	print find_git_repos("/home/s/shudyk/shudyk/cs280/")
+	print "Enter the full directory you want to scan: "
+	initial_directory = raw_input()
+	print find_git_repos(initial_directory)
 	
 	
 	
