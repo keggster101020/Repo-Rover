@@ -1,0 +1,7 @@
+#ignore everything 
+*
+
+#except python and markdown and this ignore
+!*.md
+!*.py
+!.gitignore
