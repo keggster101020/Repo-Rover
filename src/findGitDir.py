@@ -28,8 +28,17 @@ def git_status(repos):
 	for repo in repos:
 		os.chdir(repo)
 		status = subprocess.check_output(['git', 'status'])
-		print status
-		
+		if not has_issues(status):
+			
+"""
+check the git status message to see if there are changes 
+that haven't been added or committed
+"""
+def has_issues(message):
+	changes_not_added = "changes not staged for commit" in message.lower()
+	changes_not_committed = "changes to be committed" in message.lower()
+	return changes_not_added or changes_not_committed
+	
 				
 def main():
 	print "Enter the full directory you want to scan: "
