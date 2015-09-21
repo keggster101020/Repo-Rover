@@ -5,6 +5,8 @@
 !*.md
 !*.py
 !*.txt
+!*.html
+!*.css
 !src/
 !src/webReport/
 !.gitignore

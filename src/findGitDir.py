@@ -112,7 +112,7 @@ def write_report(report_info):
 				fout.writelines('<h4> %s </h4>' % report_info[0])
 				for info in report_info[1]:
 					#fout.writelines(''.join(str(info)))
-					fout.writelines(''.join(map(str,info)))
+					fout.writelines('<br />'.join(map(str,info)))
 					fout.write('<br />')
 					fout.write('\n')
 				
