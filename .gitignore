@@ -6,4 +6,5 @@
 !*.py
 !*.txt
 !src/
+!src/webReport/
 !.gitignore

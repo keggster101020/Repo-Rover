@@ -32,7 +32,8 @@ def git_status(repos):
 		status = subprocess.check_output(['git', 'status'])
 		issues = has_issues(status)
 		if issues[0]:
-			print issues #debug output
+			print [repo, issues] #debug output
+			write_report([repo, issues])
 		else:
 			print [True, repo] #also debug
 """
@@ -77,6 +78,42 @@ def get_file(message):
 		file_index.append(split[split.index('modified:',split.index('modified:')) + 1])
 	return file_index
 	
+
+"""
+Write all the output to a nice little html file
+
+param: list
+"""
+def write_report(report_info):
+	os.chdir(os.path.dirname(os.path.realpath(__file__)))
+	create_card = """<section class=\"section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp\">
+            <div class=\"mdl-card mdl-cell mdl-cell--12-col\">
+              <div class=\"mdl-card__supporting-text\">\n"""
+	end_card = """
+			 </div>
+            </div>
+          </section>
+	"""
+	with open('src/webReport/index.html') as fin, open('src/webReport/output.html','w') as fout:
+		for line in fin:
+			fout.write(line)
+			if '<div class="mdl-layout__tab-panel is-active" id="overview">' in line:
+				next(fin)
+				print "inside"
+				fout.writelines(create_card)
+				fout.writelines('<h5> %s </h5>' % report_info[0])
+				fout.writelines(end_card)
+		fout.close()
+			
+			
+	# with open('src/webReport/index.html') as fin, open('src/webReport/output.html','w') as fout:
+    # 	for line in fin:
+    #     	fout.write(line)
+    #     	if line == '<div class="mdl-layout__tab-panel is-active" id="overview">':
+    #        		next_line = next(fin)
+    #        		fout.writelines(create_card)
+    #        		fout.writelines('<h2> %s </h2' % report_info[0])
+	# 	report_file.close()
 				
 def main():
 	print "Enter the full directory you want to scan: "
