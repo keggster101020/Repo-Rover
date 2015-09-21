@@ -1,7 +1,10 @@
 import os
 import subprocess
 import re
+import shutil
 
+
+owd = os.getcwd()
 """
 This method will get all of the git repos listed under the given 
 directory
@@ -32,10 +35,10 @@ def git_status(repos):
 		status = subprocess.check_output(['git', 'status'])
 		issues = has_issues(status)
 		if issues[0]:
-			print [repo, issues] #debug output
+			#print [repo, issues] #debug output
 			write_report([repo, issues])
 		else:
-			print [True, repo] #also debug
+			print 'There were no issues with any of your repos'
 """
 check the git status message to see if there are changes 
 that haven't been added or committed or pushed
@@ -73,9 +76,11 @@ def get_file(message):
 	file_index = []
 	split = message.split()
 	count_mod = split.count('modified:')
+	index = 0
 	
 	for i in range(0, count_mod):
-		file_index.append(split[split.index('modified:',split.index('modified:')) + 1])
+		index = split.index('modified:', index+1)
+		file_index.append(split[split.index('modified:',index) + 1])
 	return file_index
 	
 
@@ -85,7 +90,9 @@ Write all the output to a nice little html file
 param: list
 """
 def write_report(report_info):
-	os.chdir(os.path.dirname(os.path.realpath(__file__)))
+	report_info[1].remove(True) #remove this because it is for conditional purposes and no longer needed
+	os.chdir(owd)
+	#print '\n\n %s' % os.getcwd()
 	create_card = """<section class=\"section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp\">
             <div class=\"mdl-card mdl-cell mdl-cell--12-col\">
               <div class=\"mdl-card__supporting-text\">\n"""
@@ -94,16 +101,25 @@ def write_report(report_info):
             </div>
           </section>
 	"""
-	with open('src/webReport/index.html') as fin, open('src/webReport/output.html','w') as fout:
+	with open('webReport/index.html') as fin, open('webReport/output.html','w') as fout:
 		for line in fin:
 			fout.write(line)
 			if '<div class="mdl-layout__tab-panel is-active" id="overview">' in line:
 				next(fin)
-				print "inside"
+				#print "inside"
+				fout.write('\n\n')
 				fout.writelines(create_card)
-				fout.writelines('<h5> %s </h5>' % report_info[0])
+				fout.writelines('<h4> %s </h4>' % report_info[0])
+				for info in report_info[1]:
+					#fout.writelines(''.join(str(info)))
+					fout.writelines(''.join(map(str,info)))
+					fout.write('<br />')
+					fout.write('\n')
+				
 				fout.writelines(end_card)
 		fout.close()
+		fin.close()
+		os.rename('webReport/output.html','webReport/index.html')
 			
 			
 	# with open('src/webReport/index.html') as fin, open('src/webReport/output.html','w') as fout:
@@ -116,11 +132,12 @@ def write_report(report_info):
 	# 	report_file.close()
 				
 def main():
+	shutil.copyfile('webReport/clean.html', 'webReport/index.html')
 	print "Enter the full directory you want to scan: "
 	initial_directory = raw_input()
 	repos = find_git_repos(initial_directory)
-	print repos
-	print git_status(repos)
+	repos
+	git_status(repos)
 	
 
 	
