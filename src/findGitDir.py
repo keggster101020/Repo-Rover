@@ -32,9 +32,9 @@ def git_issues(repo):
     if issues[0]:
 	#print [repo, issues] #debug output
 	write_report([repo, issues])
+	return issues
     else:
-	print 'There were no issues with any of your repos'
-    return issues
+	return issues[1]
 
 """
 This will run git status for all the git repos
@@ -47,7 +47,22 @@ return: list or boolean
 def write_reports(repos):
 	report_stats = []
 	for repo in repos:
-	    git_issues(repo)
+            print "%s:" % repo,
+	    issues = git_issues(repo)
+            if (issues):
+                if (len(issues[0])==1):
+                    print "One issue:"
+                else:
+                    print "%d issues:" % len(issues[0])
+
+                for issue in issues[0]:
+                    print issue
+            else:
+                print "No issues."
+
+
+            
+
 		
 """
 check the git status message to see if there are changes 
@@ -146,8 +161,8 @@ def main():
 	print "Enter the full directory you want to scan: "
 	initial_directory = raw_input()
 	repos = find_git_repos(initial_directory)
+	print "I found %d git repositories." % len(repos)
 	write_reports(repos)
-	
 
 	
 if  __name__ =='__main__':main()
