@@ -21,6 +21,22 @@ def find_git_repos(dir):
     return repos
 
 """
+run git status for a single git repo
+param: repo
+return: bool , list of issues
+"""
+def git_issues(repo):
+    os.chdir(repo)
+    status = subprocess.check_output(['git', 'status'])
+    issues = has_issues(status)
+    if issues[0]:
+	#print [repo, issues] #debug output
+	write_report([repo, issues])
+    else:
+	print 'There were no issues with any of your repos'
+    return issues
+
+"""
 This will run git status for all the git repos
 and compile a list of repo dirs that have
 any staged commits
@@ -28,17 +44,11 @@ any staged commits
 param: list
 return: list or boolean
 """
-def git_status(repos):
+def write_reports(repos):
 	report_stats = []
 	for repo in repos:
-		os.chdir(repo)
-		status = subprocess.check_output(['git', 'status'])
-		issues = has_issues(status)
-		if issues[0]:
-			#print [repo, issues] #debug output
-			write_report([repo, issues])
-		else:
-			print 'There were no issues with any of your repos'
+	    git_issues(repo)
+		
 """
 check the git status message to see if there are changes 
 that haven't been added or committed or pushed
@@ -136,8 +146,7 @@ def main():
 	print "Enter the full directory you want to scan: "
 	initial_directory = raw_input()
 	repos = find_git_repos(initial_directory)
-	repos
-	git_status(repos)
+	write_reports(repos)
 	
 
 	
