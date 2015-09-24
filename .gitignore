@@ -8,5 +8,4 @@
 !*.html
 !*.css
 !src/
-!src/webReport/
 !.gitignore
