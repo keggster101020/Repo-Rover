@@ -58,7 +58,7 @@ def write_reports(repos):
                 if (len(issues[0])==1):
                     print WARNING+"One issue:"+ENDC
                 else:
-                    print WARNING+"%d issues:"+ENDC % len(issues[0])
+                    print WARNING+"%d issues:" % len(issues[0])+ENDC
 
                 for issue in issues[0]:
                     print issue
