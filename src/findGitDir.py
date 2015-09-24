@@ -3,6 +3,7 @@ import subprocess
 import re
 import shutil
 import sys
+import webbrowser
 
 # ANSI color codes
 OKGREEN = '\033[92m'
@@ -86,7 +87,7 @@ def has_issues(message):
 	changes_not_added = changes_staged in message.lower()
 	if changes_not_added:
 		bool_issues = True
-		file_name = get_file(message)
+		file_name = get_file(message, 'Changes',1)
 		issues.append("Changes not staged for commit: %s" % file_name)
 	if committed_not_pushed:
 		bool_issues = True
@@ -94,8 +95,8 @@ def has_issues(message):
 		issues.append("You have %s unpushed commits." % unpushed)
 	if changes_not_committed:
 		bool_issues = True
-		file_name = get_file(message)
-                issues.append("Changes to be committed: %s" % file_name)
+		file_name = get_file(message, 'Changes',2)
+       	issues.append("Changes to be committed: %s" % file_name)
 	
 	return [bool_issues, issues]
 	
@@ -103,12 +104,13 @@ def has_issues(message):
 """
 Gets the file that is being staged in git
 """
-def get_file(message):
+def get_file(message, section, section_number):
 	file_index = []
-	split = message.split()
+	splits = message.split(section)
+	split = splits[section_number]
 	count_mod = split.count('modified:')
 	index = 0
-	
+	split = split.split()
 	for i in range(0, count_mod):
 		index = split.index('modified:', index+1)
 		file_index.append(split[split.index('modified:',index) + 1])
@@ -182,6 +184,8 @@ def main(argv):
 	repos = find_git_repos(initial_directory)
 	print "I found %d git repositories." % len(repos)
 	write_reports(repos)
+	index_url = ('file://' + owd + '/webReport/index.html')
+	webbrowser.open(index_url, new=2)
 
 	
 if  __name__ =='__main__':main(sys.argv[1:])
