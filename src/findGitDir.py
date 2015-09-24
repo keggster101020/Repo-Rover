@@ -12,7 +12,7 @@ ENDC = '\033[0m'
 
 owd = os.getcwd()
 """
-This method will get all of the git repos listed under the given 
+This method will ge all of the git repos listed under the given 
 directory
 
 param: directory path
@@ -57,12 +57,12 @@ def write_reports(repos):
 	    issues = git_issues(repo)
             if (issues):
                 if (len(issues[0])==1):
-                    print WARNING+"One issue:"+ENDC
+                    print FAIL+"One issue:"+ENDC
                 else:
-                    print WARNING+"%d issues:" % len(issues[0])+ENDC
+                    print FAIL+"%d issues:" % len(issues[0])+ENDC
 
                 for issue in issues[0]:
-                    print issue
+                    print WARNING+issue+ENDC
             else:
                 print OKGREEN+"No issues."+ENDC
 
@@ -87,15 +87,15 @@ def has_issues(message):
 	if changes_not_added:
 		bool_issues = True
 		file_name = get_file(message)
-		issues.append(FAIL+"Changes not staged for commit:"+ENDC+" %s" % file_name)
+		issues.append("Changes not staged for commit: %s" % file_name)
 	if committed_not_pushed:
 		bool_issues = True
 		unpushed = get_unpushed(message)
-		issues.append(FAIL+"You have %s unpushed commits." % unpushed+ENDC)
+		issues.append("You have %s unpushed commits." % unpushed)
 	if changes_not_committed:
 		bool_issues = True
 		file_name = get_file(message)
-                issues.append(FAIL+"Changes to be committed: "+ENDC+"%s" % file_name)
+                issues.append("Changes to be committed: %s" % file_name)
 	
 	return [bool_issues, issues]
 	
