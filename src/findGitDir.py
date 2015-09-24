@@ -2,6 +2,7 @@ import os
 import subprocess
 import re
 import shutil
+import sys
 
 # ANSI color codes
 OKGREEN = '\033[92m'
@@ -161,12 +162,18 @@ def write_report(report_info):
     #        		fout.writelines('<h2> %s </h2' % report_info[0])
 	# 	report_file.close()
 				
-def main():
+def main(argv):
 	shutil.copyfile('webReport/clean.html', 'webReport/index.html')
-	initial_directory = os.getcwd()
+
+        if len(argv) > 0:
+            initial_directory = argv[0]
+            print initial_directory
+        else:
+	    initial_directory = os.getcwd()
+
 	repos = find_git_repos(initial_directory)
 	print "I found %d git repositories." % len(repos)
 	write_reports(repos)
 
 	
-if  __name__ =='__main__':main()
+if  __name__ =='__main__':main(sys.argv[1:])
