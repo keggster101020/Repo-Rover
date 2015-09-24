@@ -163,8 +163,7 @@ def write_report(report_info):
 				
 def main():
 	shutil.copyfile('webReport/clean.html', 'webReport/index.html')
-	print "Enter the full directory you want to scan: "
-	initial_directory = raw_input()
+	initial_directory = os.getcwd()
 	repos = find_git_repos(initial_directory)
 	print "I found %d git repositories." % len(repos)
 	write_reports(repos)
