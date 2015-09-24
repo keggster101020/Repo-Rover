@@ -87,15 +87,15 @@ def has_issues(message):
 	if changes_not_added:
 		bool_issues = True
 		file_name = get_file(message)
-		issues.append("changes not staged for commit : %s" % file_name)
+		issues.append(FAIL+"Changes not staged for commit:"+ENDC+" %s" % file_name)
 	if committed_not_pushed:
 		bool_issues = True
-		file_name = get_file(message)
-		issues.append("You have a commit that you have not pushed : %s" % file_name)
+		unpushed = get_unpushed(message)
+		issues.append(FAIL+"You have %s unpushed commits." % unpushed+ENDC)
 	if changes_not_committed:
 		bool_issues = True
 		file_name = get_file(message)
-		issues.append("Changes to be committed %s" % file_name)
+                issues.append(FAIL+"Changes to be committed: "+ENDC+"%s" % file_name)
 	
 	return [bool_issues, issues]
 	
@@ -113,7 +113,15 @@ def get_file(message):
 		index = split.index('modified:', index+1)
 		file_index.append(split[split.index('modified:',index) + 1])
 	return file_index
-	
+
+"""
+Gets the number of unpushed commits
+"""
+def get_unpushed(message):
+    p = re.compile('\' by (\\d+)')
+    r = p.search(message)
+    num_unpushed = r.group(1)
+    return num_unpushed	
 
 """
 Write all the output to a nice little html file
