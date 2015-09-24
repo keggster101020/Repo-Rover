@@ -3,6 +3,11 @@ import subprocess
 import re
 import shutil
 
+# ANSI color codes
+OKGREEN = '\033[92m'
+WARNING = '\033[93m'
+FAIL = '\033[91m'
+ENDC = '\033[0m'
 
 owd = os.getcwd()
 """
@@ -51,14 +56,14 @@ def write_reports(repos):
 	    issues = git_issues(repo)
             if (issues):
                 if (len(issues[0])==1):
-                    print "One issue:"
+                    print WARNING+"One issue:"+ENDC
                 else:
-                    print "%d issues:" % len(issues[0])
+                    print WARNING+"%d issues:"+ENDC % len(issues[0])
 
                 for issue in issues[0]:
                     print issue
             else:
-                print "No issues."
+                print OKGREEN+"No issues."+ENDC
 
 
             
