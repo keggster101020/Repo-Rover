@@ -96,7 +96,7 @@ def has_issues(message):
 	if changes_not_committed:
 		bool_issues = True
 		file_name = get_file(message, 'Changes',2)
-       	issues.append("Changes to be committed: %s" % file_name)
+       	        issues.append("Changes to be committed: %s" % file_name)
 	
 	return [bool_issues, issues]
 	
