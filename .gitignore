@@ -9,3 +9,5 @@
 !*.css
 !src/
 !.gitignore
+!docs/
+!*.pdf
