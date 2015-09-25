@@ -6,7 +6,7 @@ NAME is a currently a command line cline that can provide a brief summary report
 
 
 ## Requirements
-* Python
+* Python 2.7.X
 
 ## Development Notes
 

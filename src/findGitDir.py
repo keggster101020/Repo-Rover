@@ -95,7 +95,7 @@ def has_issues(message):
 		issues.append("You have %s unpushed commits." % unpushed)
 	if changes_not_committed:
 		bool_issues = True
-		file_name = get_file(message, 'Changes',2)
+		file_name = get_file(message, 'Changes',message.count('Changes'))
        	        issues.append("Changes to be committed: %s" % file_name)
 	
 	return [bool_issues, issues]
