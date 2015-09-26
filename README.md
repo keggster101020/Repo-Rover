@@ -40,6 +40,18 @@ to navigate Terminal as this is not necessary in the usage of our system.
 After launching either Terminal or the Command Prompt,
 you may proceed with the rest of this tutorial on using **Repo-Rover**.
 
+### Check that you have Python installed
+To check whether or not you have [Python](https://www.python.org/)
+installed type the following command in your Terminal/Command Prompt.
+
+```
+# Python Verion
+python --version
+
+# Your version may differ
+# => Python 2.7.9
+```
+
 ### Installation
 The easiest---and currently only way---to install our system is to clone
 the repository to your local machine. If you are familiar with git and
