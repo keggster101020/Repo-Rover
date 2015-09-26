@@ -10,8 +10,8 @@ detect these un-committed, un-tracked, or un-pushed files!
 
 ## Repo-Rover Overview
 **Repo-Rover** is a command-line tool used to track the statuses of your
-local git repositories! You may be thinking, ``Don't we have a
-`git-status` to do that exact thing?'' The answer is your are exactly
+local git repositories! You may be thinking, "Don't we have a
+`git-status` to do that exact thing?" The answer is your are exactly
 correct! **Repo-Rover** is a `git-status` for your entire collection of
 git repositories on your machine! Give **Repo-Rover** a path and it will
 return to you the status of every single git repository under that path
