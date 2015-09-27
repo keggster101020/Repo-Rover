@@ -20,8 +20,6 @@ to a clean, material design webpage! Awesome tool, right? Give it a try!
 ## Requirements
 Python v2.7.X (at least)
 
-## Development Environment
-
 ## Preparation Overview
 _The following bulleted points will be covered in more detail below._
 + Launch Terminal/Command Prompt
