@@ -1,8 +1,9 @@
+#!/bin/python
+
 """
 Author: Keegan Shudy, Cody Kinneer
 """
 
-#!/bin/python
 import os
 import subprocess
 import re
