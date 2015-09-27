@@ -18,7 +18,7 @@ return to you the status of every single git repository under that path
 to a clean, material design webpage! Awesome tool, right? Give it a try!
 
 ## Requirements
-Python
+Python v2.7.X (at least)
 
 ## Development Environment
 
@@ -26,8 +26,8 @@ Python
 _The following bulleted points will be covered in more detail below._
 + Launch Terminal/Command Prompt
 + Check that you have `Python` installed
-+ Clone **Repo-Rover**
-+ Run **Repo-Rover**
++ Install **Repo-Rover**
++ Usage
 
 ### Launching Terminal/Command Prompt
 Our system, in its current state, requires you to use the
@@ -43,6 +43,7 @@ you may proceed with the rest of this tutorial on using **Repo-Rover**.
 ### Check that you have Python installed
 To check whether or not you have [Python](https://www.python.org/)
 installed type the following command in your Terminal/Command Prompt.
+Our system has been tested on Python version 2.7.9 and Python 3.4.3.
 
 ```
 # Python Verion
@@ -53,7 +54,7 @@ python --version
 ```
 
 ### Installation
-The easiest---and currently only way---to install our system is to clone
+The easiest way to get our system is to clone
 the repository to your local machine. If you are familiar with git and
 cloning repositories use the following command. Otherwise, if you are
 interested in learning git, please refer to this link for a wonderful
@@ -67,14 +68,30 @@ git clone git@github.com:keggster101020/Repo-Rover.git
 _Note: Upon special request, we can provide our system via Universal
 Serial Bus (USB), Compact disc (CD), and even Floppy Disk._
 
-### Running Repo-Rover
-```
-# change directory to the clone Repo-Rover directory
-cd Repo-Rover/src
+After cloning the repository, you can install **Repo-Rover** with the
+following command:
 
-# run Repo-Rover
-python findGitDir.py "/path/to/dir"
 ```
+# installing reporover executable
+sudo ./setup.py install
+```
+
+### Usage
+Find git repositories in the directory that you are currently in
+```
+# find git repos in the current directory
+reporover
+```
+Find git repositories in a given directory
+```
+# find git repos in a given dir
+reporover "path/to/dir"
+```
+
+# Requirements
+_For the full list of requirements see_
+[requirements](https://github.com/keggster101020/Repo-Rover/blob/master/docs/RequirementsAnalysis.md).
+
 # License
 ______
 
@@ -100,9 +117,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # Feedback
 ______
-If you like it, hate it, or have some ideas for new features, let me
-know!
-mccurdyc at allegheny dot edu
+If you like it, hate it, or have some ideas for new features, submit a
+issue request
+[here](https://github.com/keggster101020/Repo-Rover/issues) and we will
+respond as soon as possible!
 
 # Contributors
 ______
