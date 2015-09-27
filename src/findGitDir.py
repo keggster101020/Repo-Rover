@@ -1,3 +1,4 @@
+#!/bin/python
 import os
 import subprocess
 import re
@@ -37,11 +38,11 @@ def git_issues(repo):
     status = subprocess.check_output(['git', 'status'])
     issues = has_issues(status)
     if issues[0]:
-	#print [repo, issues] #debug output
-	write_report([repo, issues])
-	return issues
+        #print [repo, issues] #debug output
+        write_report([repo, issues])
+        return issues
     else:
-	return issues[1]
+        return issues[1]
 
 """
 This will run git status for all the git repos
@@ -54,18 +55,18 @@ return: list or boolean
 def write_reports(repos):
 	report_stats = []
 	for repo in repos:
-            print "%s:" % repo,
-	    issues = git_issues(repo)
+            print ("%s:" % repo,)
+            issues = git_issues(repo)
             if (issues):
                 if (len(issues[0])==1):
-                    print FAIL+"One issue:"+ENDC
+                    print (FAIL+"One issue:"+ENDC)
                 else:
-                    print FAIL+"%d issues:" % len(issues[0])+ENDC
+                    print (FAIL+"%d issues:" % len(issues[0])+ENDC)
 
                 for issue in issues[0]:
-                    print WARNING+issue+ENDC
+                    print (WARNING+issue+ENDC)
             else:
-                print OKGREEN+"No issues."+ENDC
+                print (OKGREEN+"No issues."+ENDC)
 
 
             
@@ -96,7 +97,7 @@ def has_issues(message):
 	if changes_not_committed:
 		bool_issues = True
 		file_name = get_file(message, 'Changes',message.count('Changes'))
-       	        issues.append("Changes to be committed: %s" % file_name)
+		issues.append("Changes to be committed: %s" % file_name)
 	
 	return [bool_issues, issues]
 	
@@ -173,19 +174,19 @@ def write_report(report_info):
 	# 	report_file.close()
 				
 def main(argv):
-	shutil.copyfile('webReport/clean.html', 'webReport/index.html')
+        shutil.copyfile('webReport/clean.html', 'webReport/index.html')
 
         if len(argv) > 0:
             initial_directory = argv[0]
-            print initial_directory
+            print (initial_directory)
         else:
-	    initial_directory = os.getcwd()
+            initial_directory = os.getcwd()
 
-	repos = find_git_repos(initial_directory)
-	print "I found %d git repositories." % len(repos)
-	write_reports(repos)
-	index_url = ('file://' + owd + '/webReport/index.html')
-	webbrowser.open(index_url, new=2)
+        repos = find_git_repos(initial_directory)
+        print ("I found %d git repositories." % len(repos))
+        write_reports(repos)
+        index_url = ('file://' + owd + '/webReport/index.html')
+        webbrowser.open(index_url, new=2)
 
 	
 if  __name__ =='__main__':main(sys.argv[1:])
