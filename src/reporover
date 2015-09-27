@@ -12,6 +12,10 @@ WARNING = '\033[93m'
 FAIL = '\033[91m'
 ENDC = '\033[0m'
 
+totalRepos=0; #setup the counter for the total number of repositories
+cleanRepos=0; # setup the counter for the total number of clean repositories
+dirRepos=0; # setup the counter for the total number of repositories that have problems
+
 owd = os.getcwd()
 """
 This method will ge all of the git repos listed under the given 
@@ -21,11 +25,13 @@ param: directory path
 retuns: list
 """
 def find_git_repos(dir):
+    global totalRepos;
     repos = []
     for (path, dirs, files) in os.walk(dir):
         for directory in dirs:
             if directory == ".git":
                 repos.append(path)
+		totalRepos=totalRepos+1;
     return repos
 
 """
@@ -34,9 +40,11 @@ param: repo
 return: bool , list of issues
 """
 def git_issues(repo):
+    global dirRepos;
     os.chdir(repo)
     status = subprocess.check_output(['git', 'status'])
     issues = has_issues(status)
+    dirRepos=dirRepos+1;
     if issues[0]:
         #print [repo, issues] #debug output
         write_report([repo, issues])
@@ -174,6 +182,7 @@ def write_report(report_info):
 	# 	report_file.close()
 				
 def main(argv):
+	global totalRepos, dirRepos, cleanRepos;
         shutil.copyfile('webReport/clean.html', 'webReport/index.html')
 
         if len(argv) > 0:
@@ -184,6 +193,13 @@ def main(argv):
 
         repos = find_git_repos(initial_directory)
         print ("I found %d git repositories." % len(repos))
+	print "The number of repositories that I found is: ", totalRepos
+	print "The number of clean repositories that I found is: ", (totalRepos-dirRepos)
+	print "The number of problematic repositories that I found is : ", dirRepos
+	cleanRepos=(totalRepos-dirRepos)/totalRepos*100
+	print ("The percentage of clean repositories is: %0.2f%%." % cleanRepos)
+	dirRepos=dirRepos/totalRepos*100
+	print ("The percentage of problematic repositories is: %0.2f%%." % dirRepos)
         write_reports(repos)
         index_url = ('file://' + owd + '/webReport/index.html')
         webbrowser.open(index_url, new=2)
