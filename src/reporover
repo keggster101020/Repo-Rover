@@ -1,4 +1,9 @@
 #!/bin/python
+
+"""
+Author: Keegan Shudy, Cody Kinneer
+"""
+
 import os
 import subprocess
 import re
@@ -85,29 +90,33 @@ check the git status message to see if there are changes
 that haven't been added or committed or pushed
 """
 def has_issues(message):
-	issues = []
-	bool_issues = False
-	changes_staged = "changes not staged for commit"
-	changes_committed = "changes to be committed"
-	changes_pushed = "your branch is ahead of"
-	
-	changes_not_committed = changes_committed in message.lower()
-	committed_not_pushed = changes_pushed in message.lower()
-	changes_not_added = changes_staged in message.lower()
-	if changes_not_added:
-		bool_issues = True
-		file_name = get_file(message, 'Changes',1)
-		issues.append("Changes not staged for commit: %s" % file_name)
-	if committed_not_pushed:
-		bool_issues = True
-		unpushed = get_unpushed(message)
-		issues.append("You have %s unpushed commits." % unpushed)
-	if changes_not_committed:
-		bool_issues = True
-		file_name = get_file(message, 'Changes',message.count('Changes'))
-		issues.append("Changes to be committed: %s" % file_name)
-	
-	return [bool_issues, issues]
+	try:
+		issues = []
+		bool_issues = False
+		changes_staged = "changes not staged for commit"
+		changes_committed = "changes to be committed"
+		changes_pushed = "your branch is ahead of"
+		
+		changes_not_committed = changes_committed in message.lower()
+		committed_not_pushed = changes_pushed in message.lower()
+		changes_not_added = changes_staged in message.lower()
+		if changes_not_added:
+			bool_issues = True
+			file_name = get_file(message, 'Changes',message.count('Changes'))
+			issues.append("Changes not staged for commit: %s" % file_name)
+		if committed_not_pushed:
+			bool_issues = True
+			unpushed = get_unpushed(message)
+			issues.append("You have %s unpushed commits." % unpushed)
+		if changes_not_committed:
+			bool_issues = True
+			file_name = get_file(message, 'Changes',1 if (message.count('Changes') > 1 ) else 0)
+			issues.append("Changes to be committed: %s" % file_name)
+		
+		return [bool_issues, issues]
+	except:
+		print '\nWe encounted an error on our end trying to read a clean repo\n'
+		
 	
 	#return changes_not_committed or committed_not_pushed or changes_not_added #this will be removed 
 """
@@ -140,36 +149,39 @@ Write all the output to a nice little html file
 param: list
 """
 def write_report(report_info):
-	report_info[1].remove(True) #remove this because it is for conditional purposes and no longer needed
-	os.chdir(owd)
-	#print '\n\n %s' % os.getcwd()
-	create_card = """<section class=\"section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp\">
-            <div class=\"mdl-card mdl-cell mdl-cell--12-col\">
-              <div class=\"mdl-card__supporting-text\">\n"""
-	end_card = """
-			 </div>
-            </div>
-          </section>
-	"""
-	with open('webReport/index.html') as fin, open('webReport/output.html','w') as fout:
-		for line in fin:
-			fout.write(line)
-			if '<div class="mdl-layout__tab-panel is-active" id="overview">' in line:
-				next(fin)
-				#print "inside"
-				fout.write('\n\n')
-				fout.writelines(create_card)
-				fout.writelines('<h4> %s </h4>' % report_info[0])
-				for info in report_info[1]:
-					#fout.writelines(''.join(str(info)))
-					fout.writelines('<br />'.join(map(str,info)))
-					fout.write('<br />')
-					fout.write('\n')
-				
-				fout.writelines(end_card)
-		fout.close()
-		fin.close()
-		os.rename('webReport/output.html','webReport/index.html')
+	try:
+		report_info[1].remove(True) #remove this because it is for conditional purposes and no longer needed
+		os.chdir(owd)
+		#print '\n\n %s' % os.getcwd()
+		create_card = """<section class=\"section--center mdl-grid mdl-grid--no-spacing mdl-shadow--3dp\">
+				<div class=\"mdl-card mdl-cell mdl-cell--12-col\">
+				<div class=\"mdl-card__supporting-text\">\n"""
+		end_card = """
+				</div>
+				</div>
+			</section>
+		"""
+		with open('webReport/index.html') as fin, open('webReport/output.html','w') as fout:
+			for line in fin:
+				fout.write(line)
+				if '<div class="mdl-layout__tab-panel is-active" id="overview">' in line:
+					next(fin)
+					#print "inside"
+					fout.write('\n\n')
+					fout.writelines(create_card)
+					fout.writelines('<h4> %s </h4>' % report_info[0])
+					for info in report_info[1]:
+						#fout.writelines(''.join(str(info)))
+						fout.writelines('<br />'.join(map(str,info)))
+						fout.write('<br />')
+						fout.write('\n')
+					
+					fout.writelines(end_card)
+			fout.close()
+			fin.close()
+			os.rename('webReport/output.html','webReport/index.html')
+	except:
+		print '\nThere was an error writing the web report, make sure the clean.html is in the src/webReport folder\n'
 			
 			
 	# with open('src/webReport/index.html') as fin, open('src/webReport/output.html','w') as fout:
