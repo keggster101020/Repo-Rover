@@ -1,3 +1,7 @@
+"""
+Author: Keegan Shudy, Cody Kinneer
+"""
+
 #!/bin/python
 import os
 import subprocess
@@ -88,7 +92,7 @@ def has_issues(message):
 	changes_not_added = changes_staged in message.lower()
 	if changes_not_added:
 		bool_issues = True
-		file_name = get_file(message, 'Changes',1)
+		file_name = get_file(message, 'Changes',message.count('Changes'))
 		issues.append("Changes not staged for commit: %s" % file_name)
 	if committed_not_pushed:
 		bool_issues = True
@@ -96,7 +100,7 @@ def has_issues(message):
 		issues.append("You have %s unpushed commits." % unpushed)
 	if changes_not_committed:
 		bool_issues = True
-		file_name = get_file(message, 'Changes',message.count('Changes'))
+		file_name = get_file(message, 'Changes',1 if (message.count('Changes') > 1 ) else 0)
 		issues.append("Changes to be committed: %s" % file_name)
 	
 	return [bool_issues, issues]
@@ -135,7 +139,7 @@ def write_report(report_info):
 	report_info[1].remove(True) #remove this because it is for conditional purposes and no longer needed
 	os.chdir(owd)
 	#print '\n\n %s' % os.getcwd()
-	create_card = """<section class=\"section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp\">
+	create_card = """<section class=\"section--center mdl-grid mdl-grid--no-spacing mdl-shadow--3dp\">
             <div class=\"mdl-card mdl-cell mdl-cell--12-col\">
               <div class=\"mdl-card__supporting-text\">\n"""
 	end_card = """
