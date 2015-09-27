@@ -45,11 +45,10 @@ param: repo
 return: bool , list of issues
 """
 def git_issues(repo):
-    global dirRepos;
+   
     os.chdir(repo)
     status = subprocess.check_output(['git', 'status'])
     issues = has_issues(status)
-    dirRepos=dirRepos+1;
     if issues[0]:
         #print [repo, issues] #debug output
         write_report([repo, issues])
@@ -90,6 +89,9 @@ check the git status message to see if there are changes
 that haven't been added or committed or pushed
 """
 def has_issues(message):
+	global dirRepos;
+	dirRepos=dirRepos+1;
+	print "The issued repositories: ", dirRepos
 	try:
 		issues = []
 		bool_issues = False
@@ -149,6 +151,7 @@ Write all the output to a nice little html file
 param: list
 """
 def write_report(report_info):
+
 	try:
 		report_info[1].remove(True) #remove this because it is for conditional purposes and no longer needed
 		os.chdir(owd)
@@ -162,6 +165,11 @@ def write_report(report_info):
 			</section>
 		"""
 		with open('webReport/index.html') as fin, open('webReport/output.html','w') as fout:
+			#fout.writelines(create_card)
+			#fout.write("The number of repositories: ", totalRepos)
+			#fout.write("The number of clean repositories", cleanRepos)
+			#fout.write("The number of issued repositories: ", dirRepos)
+			#fout.writelines(end_card)			
 			for line in fin:
 				fout.write(line)
 				if '<div class="mdl-layout__tab-panel is-active" id="overview">' in line:
@@ -175,8 +183,13 @@ def write_report(report_info):
 						fout.writelines('<br />'.join(map(str,info)))
 						fout.write('<br />')
 						fout.write('\n')
-					
+					#fout.writelines(create_card)
+					#fout.writelines(end_card)
 					fout.writelines(end_card)
+			
+			
+			
+		
 			fout.close()
 			fin.close()
 			os.rename('webReport/output.html','webReport/index.html')
@@ -195,6 +208,7 @@ def write_report(report_info):
 				
 def main(argv):
 	global totalRepos, dirRepos, cleanRepos;
+	print "The issued repositories: ", dirRepos
         shutil.copyfile('webReport/clean.html', 'webReport/index.html')
 
         if len(argv) > 0:
@@ -204,15 +218,16 @@ def main(argv):
             initial_directory = os.getcwd()
 
         repos = find_git_repos(initial_directory)
-        print ("I found %d git repositories." % len(repos))
+       
+        write_reports(repos)
+	print ("I found %d git repositories." % len(repos))
 	print "The number of repositories that I found is: ", totalRepos
 	print "The number of clean repositories that I found is: ", (totalRepos-dirRepos)
-	print "The number of problematic repositories that I found is : ", dirRepos
+	print "The number of issuses repositories that I found is : ", dirRepos
 	cleanRepos=(totalRepos-dirRepos)/totalRepos*100
 	print ("The percentage of clean repositories is: %0.2f%%." % cleanRepos)
 	dirRepos=dirRepos/totalRepos*100
 	print ("The percentage of problematic repositories is: %0.2f%%." % dirRepos)
-        write_reports(repos)
         index_url = ('file://' + owd + '/webReport/index.html')
         webbrowser.open(index_url, new=2)
 
