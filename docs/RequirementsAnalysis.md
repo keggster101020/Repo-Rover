@@ -47,8 +47,6 @@ Currently, there does not exist an efficient solution for analyzing large volume
 	*Input*: The user should specify a root address as a command line argument before program execution.  This address will determine the "starting point" for the system as it traverses all subdirectories therein.  Command line arguments/flags may also be used to control the use of certain features, at our discretion.
 	
 	*Output*: The output should include the diagnostic summaries for each repository individually, followed by the overall summary for the collection of repositories analyzed.  Specifically, the overall summary should be the first item the user views after the program finishes executing.
-	
-	>*TBD: Currently the __per__ repo summaries are only included in the external HTML report.  I will clarify with the customer if this is OK, or it such summaries should also be included in the console.*
 
 ---
 
@@ -77,7 +75,6 @@ Currently, there does not exist an efficient solution for analyzing large volume
     At a minimum, this summary should include:
       
        1. The total number of repositories found in the filesystem (given a root address).
-       2. The total number and percentage of *clean* repositories, i.e. repositories that have no indicated problems. 
 
 ### Desirable
 
@@ -93,9 +90,10 @@ Currently, there does not exist an efficient solution for analyzing large volume
 
     In addition to displaying the number of repositories found and the number of clean repositories, the *overall* repository summary should include:
     
-       1. The total number of files with untracked modifications.
-       2. The total number of files that have been added to the staging area, but not committed.
-       3. The total number of files that have been committed, but not pushed to the remote repository.
+       1. The total number and percentage of *clean* repositories, i.e. repositories that have no indicated problems. 
+       2. The total number of files with untracked modifications.
+       3. The total number of files that have been added to the staging area, but not committed.
+       4. The total number of files that have been committed, but not pushed to the remote repository.
 
 ### Optional
 
@@ -115,9 +113,7 @@ Currently, there does not exist an efficient solution for analyzing large volume
     
 2. __Speed__
 
-	The system should be able to locate all `Git` repositories and output the desired summaries within a "*reasonable amount of time*."
-    
-    >*TBD: Need to clarify with customer if this __"reasonable amount of time"__ can be translated into a quantifiable amount*
+	The system should be able to locate all `Git` repositories and output the desired summaries within 20 to 30 seconds.
     
 3. __Ease of Use__
 
@@ -125,7 +121,7 @@ Currently, there does not exist an efficient solution for analyzing large volume
     
 4. __Reliability__
 
-	>*TBD: The customer did not specifically indicate this during requirements elicitation, but I will clarify if he has certain expectations for handling faults in the system_*
+	The system should provide basic exception handling with concise error messages.  For example, if the user enters an invalid root address as input for Repo-Rover, a simple console message should indicate this and terminate the program with no additional output.
 
 ### Desirable
 
@@ -139,7 +135,7 @@ Currently, there does not exist an efficient solution for analyzing large volume
 
 	After the system has finished execution, an external graphical report should be produced.  The format of this report is left to our discretion, but it should include all of the pertinent repository diagnostics described previously.
 	
-	>*TBD: The current HTML reports that our system produces appear to overwrite each other during each run.  I will clarify if this is acceptable to the customer, or if he wants each report to be saved separately*
+	Additionally, if implemented, the user should be able to choose between console output and external report output at the start of program execution.  Further, when choosing the report output, the user should be able to indicate a name or path for the generated report.  If this field is left blank by the user, then the default report can simply be overwritten.
 	
 2. __Graphical User Interface (GUI)__
 
