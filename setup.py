@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup
 
 version = '1.0'
 
@@ -10,6 +10,7 @@ setup(name='reporover',
       author='Cody Kinneer, Keegan Shudy',
       author_email='kinneerc@allegheny.edu',
       url='https://github.com/keggster101020/Repo-Rover',
+      packages=['reporover'],
       scripts=['reporover'],
       classifiers=['Development Status :: 4 - Beta',
           'Intended Audience :: Developers',
