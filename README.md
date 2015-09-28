@@ -86,6 +86,8 @@ Find git repositories in a given directory
 reporover "path/to/dir"
 ```
 
+[![asciicast](https://asciinema.org/a/53a9dpbi3j6og40me7eengk3i.png)](https://asciinema.org/a/53a9dpbi3j6og40me7eengk3i)
+
 # Requirements
 _For the full list of requirements see_
 [requirements](https://github.com/keggster101020/Repo-Rover/blob/master/docs/RequirementsAnalysis.md).
