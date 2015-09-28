@@ -98,10 +98,12 @@ def has_issues(message):
 		changes_staged = "changes not staged for commit"
 		changes_committed = "changes to be committed"
 		changes_pushed = "your branch is ahead of"
+		branch_behind = "your branch is behind"
 
 		changes_not_committed = changes_committed in message.lower()
 		committed_not_pushed = changes_pushed in message.lower()
 		changes_not_added = changes_staged in message.lower()
+		behind_commits = branch_behind in message.lower()
 		if changes_not_added:
 			bool_issues = True
 			file_name = get_file(message, 'Changes',message.count('Changes'))
@@ -114,6 +116,9 @@ def has_issues(message):
 			bool_issues = True
 			file_name = get_file(message, 'Changes',1 if (message.count('Changes') > 1 ) else 0)
 			issues.append("Changes to be committed: %s" % file_name)
+		if behind_commits:
+			bool_issues = True
+			issues.append("Your current branch is behind by %d commits", get_commits_behind(message))
 
 		return [bool_issues, issues]
 	except:
@@ -144,6 +149,13 @@ def get_unpushed(message):
     r = p.search(message)
     num_unpushed = r.group(1)
     return num_unpushed
+	
+"""
+Gets the number of commits that the branch is behind
+"""
+def get_commits_behind(message):
+	split_message = message.lower().split()
+	return (split_message.index('commits') -1)
 
 """
 Write all the output to a nice little html file
