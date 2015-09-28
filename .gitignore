@@ -7,5 +7,5 @@
 !*.txt
 !*.html
 !*.css
-!src/
+!reporover/
 !.gitignore

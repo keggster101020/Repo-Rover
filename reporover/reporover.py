@@ -245,9 +245,9 @@ def main(argv):
         if len(argv) > 0:
             initial_directory = argv[0]
 			
-			if not os.path.isdir(initial_directory):
-				print 'The directory provided is not valid please run again and provide a valid directory'				
-				sys.exit(1)
+	    if not os.path.isdir(initial_directory):
+		print 'The directory provided is not valid please run again and provide a valid directory'				
+		sys.exit(1)
 				
             print (initial_directory)
         else:
