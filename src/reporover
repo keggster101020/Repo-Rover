@@ -23,7 +23,7 @@ dirRepos=0; # setup the counter for the total number of repositories that have p
 
 owd = os.getcwd()
 """
-This method will ge all of the git repos listed under the given 
+This method will ge all of the git repos listed under the given
 directory
 
 param: directory path
@@ -45,7 +45,7 @@ param: repo
 return: bool , list of issues
 """
 def git_issues(repo):
-   
+
     os.chdir(repo)
     status = subprocess.check_output(['git', 'status'])
     issues = has_issues(status)
@@ -81,11 +81,11 @@ def write_reports(repos):
                 print (OKGREEN+"No issues."+ENDC)
 
 
-            
 
-		
+
+
 """
-check the git status message to see if there are changes 
+check the git status message to see if there are changes
 that haven't been added or committed or pushed
 """
 def has_issues(message):
@@ -98,7 +98,7 @@ def has_issues(message):
 		changes_staged = "changes not staged for commit"
 		changes_committed = "changes to be committed"
 		changes_pushed = "your branch is ahead of"
-		
+
 		changes_not_committed = changes_committed in message.lower()
 		committed_not_pushed = changes_pushed in message.lower()
 		changes_not_added = changes_staged in message.lower()
@@ -114,13 +114,13 @@ def has_issues(message):
 			bool_issues = True
 			file_name = get_file(message, 'Changes',1 if (message.count('Changes') > 1 ) else 0)
 			issues.append("Changes to be committed: %s" % file_name)
-		
+
 		return [bool_issues, issues]
 	except:
 		print '\nWe encounted an error on our end trying to read a clean repo\n'
-		
-	
-	#return changes_not_committed or committed_not_pushed or changes_not_added #this will be removed 
+
+
+	#return changes_not_committed or committed_not_pushed or changes_not_added #this will be removed
 """
 Gets the file that is being staged in git
 """
@@ -143,7 +143,7 @@ def get_unpushed(message):
     p = re.compile('\' by (\\d+)')
     r = p.search(message)
     num_unpushed = r.group(1)
-    return num_unpushed	
+    return num_unpushed
 
 """
 Write all the output to a nice little html file
@@ -169,7 +169,7 @@ def write_report(report_info):
 			#fout.write("The number of repositories: ", totalRepos)
 			#fout.write("The number of clean repositories", cleanRepos)
 			#fout.write("The number of issued repositories: ", dirRepos)
-			#fout.writelines(end_card)			
+			#fout.writelines(end_card)
 			for line in fin:
 				fout.write(line)
 				if '<div class="mdl-layout__tab-panel is-active" id="overview">' in line:
@@ -186,17 +186,17 @@ def write_report(report_info):
 					#fout.writelines(create_card)
 					#fout.writelines(end_card)
 					fout.writelines(end_card)
-			
-			
-			
-		
+
+
+
+
 			fout.close()
 			fin.close()
 			os.rename('webReport/output.html','webReport/index.html')
 	except:
 		print '\nThere was an error writing the web report, make sure the clean.html is in the src/webReport folder\n'
-			
-			
+
+
 	# with open('src/webReport/index.html') as fin, open('src/webReport/output.html','w') as fout:
     # 	for line in fin:
     #     	fout.write(line)
@@ -205,7 +205,7 @@ def write_report(report_info):
     #        		fout.writelines(create_card)
     #        		fout.writelines('<h2> %s </h2' % report_info[0])
 	# 	report_file.close()
-				
+
 def main(argv):
 	global totalRepos, dirRepos, cleanRepos;
 	print "The issued repositories: ", dirRepos
@@ -218,7 +218,7 @@ def main(argv):
             initial_directory = os.getcwd()
 
         repos = find_git_repos(initial_directory)
-       
+
         write_reports(repos)
 	print ("I found %d git repositories." % len(repos))
 	print "The number of repositories that I found is: ", totalRepos
@@ -231,5 +231,5 @@ def main(argv):
         index_url = ('file://' + owd + '/webReport/index.html')
         webbrowser.open(index_url, new=2)
 
-	
+
 if  __name__ =='__main__':main(sys.argv[1:])
