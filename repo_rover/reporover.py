@@ -96,39 +96,39 @@ that haven't been added or committed or pushed
 def has_issues(message):
 	global dirRepos;
 	dirRepos=dirRepos+1;
-	try:
-		issues = []
-		bool_issues = False
-		changes_staged = "changes not staged for commit"
-		changes_committed = "changes to be committed"
-		changes_pushed = "your branch is ahead of"
-		branch_behind = "your branch is behind"
+	#try:
+	issues = []
+	bool_issues = False
+	changes_staged = "changes not staged for commit"
+	changes_committed = "changes to be committed"
+	changes_pushed = "your branch is ahead of"
+	branch_behind = "your branch is behind"
 
-		changes_not_committed = changes_committed in message.lower()
-		committed_not_pushed = changes_pushed in message.lower()
-		changes_not_added = changes_staged in message.lower()
-		behind_commits = branch_behind in message.lower()
-		if changes_not_added:
-			bool_issues = True
-			#file_name = get_file(message, 'Changes',message.count('Changes'))
-			file_name = get_file_new('staged')
-			issues.append("Changes not staged for commit: %s" % file_name)
-		if committed_not_pushed:
-			bool_issues = True
-			unpushed = get_unpushed(message)
-			issues.append("You have %s unpushed commits." % unpushed)
-		if changes_not_committed:
-			bool_issues = True
-			#file_name = get_file(message, 'Changes',1 if (message.count('Changes') > 1 ) else 0)
-			file_name = get_file_new('committed')
-			issues.append("Changes to be committed: %s" % file_name)
-		if behind_commits:
-			bool_issues = True
-			issues.append("Your current branch is behind by %d commits", get_commits_behind(message))
+	changes_not_committed = changes_committed in message.lower()
+	committed_not_pushed = changes_pushed in message.lower()
+	changes_not_added = changes_staged in message.lower()
+	behind_commits = branch_behind in message.lower()
+	if changes_not_added:
+		bool_issues = True
+		#file_name = get_file(message, 'Changes',message.count('Changes'))
+		file_name = get_file_new('staged')
+		issues.append("Changes not staged for commit: %s" % file_name)
+	if committed_not_pushed:
+		bool_issues = True
+		unpushed = get_unpushed(message)
+		issues.append("You have %s unpushed commits." % unpushed)
+	if changes_not_committed:
+		bool_issues = True
+		#file_name = get_file(message, 'Changes',1 if (message.count('Changes') > 1 ) else 0)
+		file_name = get_file_new('committed')
+		issues.append("Changes to be committed: %s" % file_name)
+	#if behind_commits:
+	#	bool_issues = True
+	#	issues.append("Your current branch is behind by %d commits", get_commits_behind(message))
 
-		return [bool_issues, issues]
-	except:
-		print '\nWe encounted an error on our end trying to read a clean repo\n'
+	return [bool_issues, issues]
+	#except:
+	#	print '\nWe encounted an error on our end trying to read a clean repo\n'
 
 
 	#return changes_not_committed or committed_not_pushed or changes_not_added #this will be removed
@@ -190,13 +190,6 @@ def write_report(report_info):
 
                 os.chdir(temp_dir)
 
-                index = open(temp_dir+"/index.html","w")
-
-                clean = pkgutil.get_data('repo_rover', 'webReport/clean.html')
-
-                index.write(clean)
-
-                index.close()
 
                 matmin = open(temp_dir+"/material.min.css","w")
 
@@ -250,10 +243,10 @@ def write_report(report_info):
 
 
 
-
+			
 			fout.close()
 			fin.close()
-			
+			os.rename(temp_dir+'/output.html',temp_dir+'/index.html')	
 
 
 
@@ -267,14 +260,14 @@ def write_report(report_info):
 	# 	report_file.close()
 
 def main(argv):
-	global totalRepos, dirRepos, cleanRepos;
+	global totalRepos, dirRepos, cleanRepos
         
         if len(argv) > 0:
             initial_directory = argv[0]
 			
 	    if not os.path.isdir(initial_directory):
-		print 'The directory provided is not valid please run again and provide a valid directory'				
-		sys.exit(1)
+			print 'The directory provided is not valid please run again and provide a valid directory'				
+			sys.exit(1)
 				
         else:
             initial_directory = os.getcwd()
@@ -288,13 +281,17 @@ def main(argv):
         cleanRepos=(totalRepos-dirRepos)/totalRepos*100
 
         print ("I found %d git repositories, %0.2f%% clean." % (len(repos), cleanRepos))
+	index = open(temp_dir+"/index.html","w")
 
+		##create init_setup method
+      	clean = pkgutil.get_data('repo_rover', 'webReport/clean.html')
+	index.write(clean)
+	index.close()
         write_reports(repos)
 
-        if (dirRepos > 0):
-            os.rename(temp_dir+'/output.html',temp_dir+'/index.html')
-	    index_url = ('file://' + temp_dir + '/index.html')
-            webbrowser.open(index_url, new=2)
+    	if os.path.exists(temp_dir + '/index.html'):
+		index_url = ('file://' + temp_dir + '/index.html')
+        	webbrowser.open(index_url, new=2)
 
 	# print "The number of clean repositories that I found is: ", (totalRepos-dirRepos)
 	# print "The number of issuses repositories that I found is : ", dirRepos
