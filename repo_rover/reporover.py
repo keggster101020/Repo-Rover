@@ -254,9 +254,7 @@ def write_report(report_info):
 
 			fout.close()
 			fin.close()
-			os.rename(temp_dir+'/output.html',temp_dir+'/index.html')
-			index_url = ('file://' + temp_dir + '/index.html')
-                        webbrowser.open(index_url, new=2)
+			
 
 
 
@@ -288,6 +286,9 @@ def main(argv):
         repos = find_git_repos(initial_directory)
 
         write_reports(repos)
+		os.rename(temp_dir+'/output.html',temp_dir+'/index.html')
+			index_url = ('file://' + temp_dir + '/index.html')
+                        webbrowser.open(index_url, new=2)
 	print ("I found %d git repositories." % len(repos))
 	print "The number of repositories that I found is: ", totalRepos
 	print "The number of clean repositories that I found is: ", (totalRepos-dirRepos)
