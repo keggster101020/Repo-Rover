@@ -18,7 +18,7 @@ return to you the status of every single git repository under that path
 to a clean, material design webpage! Awesome tool, right? Give it a try!
 
 ## Requirements
-Python v2.7.X (at least)
+Python v2.0 < v3.0
 
 ## Preparation Overview
 _The following bulleted points will be covered in more detail below._
@@ -41,7 +41,8 @@ you may proceed with the rest of this tutorial on using **Repo-Rover**.
 ### Check that you have Python installed
 To check whether or not you have [Python](https://www.python.org/)
 installed type the following command in your Terminal/Command Prompt.
-Our system has been tested on Python version 2.7.9 and Python 3.4.3.
+Our system has been tested on a machine with Python version 2.7.9. We
+will continue to work on making it work in Python 3.
 
 ```
 # Python Verion
@@ -92,29 +93,6 @@ reporover "path/to/dir"
 _For the full list of requirements see_
 [requirements](https://github.com/keggster101020/Repo-Rover/blob/master/docs/RequirementsAnalysis.md).
 
-# License
-______
-
-We have released **Repo-Rover** under the MIT license. Which basically means
-you can use it however you want.
-The MIT license (MIT)
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 # Feedback
 ______
 If you like it, hate it, or have some ideas for new features, submit a
@@ -132,4 +110,26 @@ ______
 + Hanzhong Zheng (victorzhz)
 + Jacob Hanko (hankoj)
 
+# License
+______
 
+The MIT license (MIT)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
