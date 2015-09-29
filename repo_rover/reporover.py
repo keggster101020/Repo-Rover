@@ -69,7 +69,7 @@ return: list or boolean
 def write_reports(repos):
 	report_stats = []
 	for repo in repos:
-            print ("%s:" % repo,)
+            print ("%s: " % repo),
             issues = git_issues(repo)
             if (issues):
                 if (len(issues[0])==1):
@@ -93,7 +93,6 @@ that haven't been added or committed or pushed
 def has_issues(message):
 	global dirRepos;
 	dirRepos=dirRepos+1;
-	print "The issued repositories: ", dirRepos
 	try:
 		issues = []
 		bool_issues = False
@@ -215,7 +214,6 @@ def write_report(report_info):
                 styles.close()
 
 		report_info[1].remove(True) #remove this because it is for conditional purposes and no longer needed
-		print report_info
 		#print '\n\n %s' % os.getcwd()
 		create_card = """<section class=\"section--center mdl-grid mdl-grid--no-spacing mdl-shadow--3dp\">
 				<div class=\"mdl-card mdl-cell mdl-cell--12-col\">
@@ -269,9 +267,7 @@ def write_report(report_info):
 
 def main(argv):
 	global totalRepos, dirRepos, cleanRepos;
-	print "The issued repositories: ", dirRepos
         
-
         if len(argv) > 0:
             initial_directory = argv[0]
 			
@@ -279,23 +275,24 @@ def main(argv):
 		print 'The directory provided is not valid please run again and provide a valid directory'				
 		sys.exit(1)
 				
-            print (initial_directory)
         else:
             initial_directory = os.getcwd()
 
         repos = find_git_repos(initial_directory)
 
+        if (totalRepos == 0):
+            print "No repositories found."
+            sys.exit()
+
+        cleanRepos=(totalRepos-dirRepos)/totalRepos*100
+
+        print ("I found %d git repositories, %0.2f%% clean." % (len(repos), cleanRepos))
+
         write_reports(repos)
-		os.rename(temp_dir+'/output.html',temp_dir+'/index.html')
-			index_url = ('file://' + temp_dir + '/index.html')
-                        webbrowser.open(index_url, new=2)
-	print ("I found %d git repositories." % len(repos))
-	print "The number of repositories that I found is: ", totalRepos
-	print "The number of clean repositories that I found is: ", (totalRepos-dirRepos)
-	print "The number of issuses repositories that I found is : ", dirRepos
-	cleanRepos=(totalRepos-dirRepos)/totalRepos*100
-	print ("The percentage of clean repositories is: %0.2f%%." % cleanRepos)
-	dirRepos=dirRepos/totalRepos*100
-	print ("The percentage of problematic repositories is: %0.2f%%." % dirRepos)
+
+	# print "The number of clean repositories that I found is: ", (totalRepos-dirRepos)
+	# print "The number of issuses repositories that I found is : ", dirRepos
+	# dirRepos=dirRepos/totalRepos*100
+	# print ("The percentage of problematic repositories is: %0.2f%%." % dirRepos)
 
 if  __name__ =='__main__':main(sys.argv[1:])
