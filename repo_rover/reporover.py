@@ -290,6 +290,10 @@ def main(argv):
 
         write_reports(repos)
 
+        os.rename(temp_dir+'/output.html',temp_dir+'/index.html')
+	index_url = ('file://' + temp_dir + '/index.html')
+        webbrowser.open(index_url, new=2)
+
 	# print "The number of clean repositories that I found is: ", (totalRepos-dirRepos)
 	# print "The number of issuses repositories that I found is : ", dirRepos
 	# dirRepos=dirRepos/totalRepos*100
