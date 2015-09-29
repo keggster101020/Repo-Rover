@@ -10,6 +10,8 @@ import re
 import shutil
 import sys
 import webbrowser
+import pkgutil
+import tempfile
 
 # ANSI color codes
 OKGREEN = '\033[92m'
@@ -181,10 +183,39 @@ param: list
 """
 def write_report(report_info):
 
-	try:
+                # wow, we have to make a temporary directory because we cant get the 
+                # package data directory
+
+                temp_dir = tempfile.mkdtemp()
+
+                os.chdir(temp_dir)
+
+                index = open(temp_dir+"/index.html","w")
+
+                clean = pkgutil.get_data('repo_rover', 'webReport/clean.html')
+
+                index.write(clean)
+
+                index.close()
+
+                matmin = open(temp_dir+"/material.min.css","w")
+
+                matminlib = pkgutil.get_data('repo_rover', 'webReport/clean.html')
+
+                matmin.write(matminlib)
+
+                matmin.close()
+
+                styles = open(temp_dir+"/styles.css","w")
+
+                styleslib = pkgutil.get_data('repo_rover', 'webReport/styles.css')
+
+                styles.write(styleslib)
+
+                styles.close()
+
 		report_info[1].remove(True) #remove this because it is for conditional purposes and no longer needed
 		print report_info
-		os.chdir(owd)
 		#print '\n\n %s' % os.getcwd()
 		create_card = """<section class=\"section--center mdl-grid mdl-grid--no-spacing mdl-shadow--3dp\">
 				<div class=\"mdl-card mdl-cell mdl-cell--12-col\">
@@ -194,7 +225,7 @@ def write_report(report_info):
 				</div>
 			</section>
 		"""
-		with open('webReport/index.html') as fin, open('webReport/output.html','w') as fout:
+		with open(temp_dir+'/index.html') as fin, open(temp_dir+'/output.html','w') as fout:
 			#fout.writelines(create_card)
 			#fout.write("The number of repositories: ", totalRepos)
 			#fout.write("The number of clean repositories", cleanRepos)
@@ -223,9 +254,10 @@ def write_report(report_info):
 
 			fout.close()
 			fin.close()
-			os.rename('webReport/output.html','webReport/index.html')
-	except:
-		print '\nThere was an error writing the web report, make sure the clean.html is in the src/webReport folder\n'
+			os.rename(temp_dir+'/output.html',temp_dir+'/index.html')
+			index_url = ('file://' + temp_dir + '/index.html')
+                        webbrowser.open(index_url, new=2)
+
 
 
 	# with open('src/webReport/index.html') as fin, open('src/webReport/output.html','w') as fout:
@@ -240,7 +272,7 @@ def write_report(report_info):
 def main(argv):
 	global totalRepos, dirRepos, cleanRepos;
 	print "The issued repositories: ", dirRepos
-        shutil.copyfile('webReport/clean.html', 'webReport/index.html')
+        
 
         if len(argv) > 0:
             initial_directory = argv[0]
@@ -264,8 +296,5 @@ def main(argv):
 	print ("The percentage of clean repositories is: %0.2f%%." % cleanRepos)
 	dirRepos=dirRepos/totalRepos*100
 	print ("The percentage of problematic repositories is: %0.2f%%." % dirRepos)
-        index_url = ('file://' + owd + '/webReport/index.html')
-        webbrowser.open(index_url, new=2)
-
 
 if  __name__ =='__main__':main(sys.argv[1:])

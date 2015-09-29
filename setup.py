@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from setuptools import setup
+from distutils.core import setup
 
 version = '1.0'
 
@@ -11,7 +11,7 @@ setup(name='repo_rover',
       author_email='kinneerc@allegheny.edu',
       url='https://github.com/keggster101020/Repo-Rover',
       packages=['repo_rover'],
-      package_data={'repo_rover':['*.html','*.css']},
+      package_data={'repo_rover':['webReport/*.html','webReport/*.css']},
       scripts=['repo_rover/reporover'],
       classifiers=['Development Status :: 4 - Beta',
           'Intended Audience :: Developers',
