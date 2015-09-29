@@ -200,7 +200,7 @@ def write_report(report_info):
 
                 matmin = open(temp_dir+"/material.min.css","w")
 
-                matminlib = pkgutil.get_data('repo_rover', 'webReport/clean.html')
+                matminlib = pkgutil.get_data('repo_rover', 'webReport/material.min.css')
 
                 matmin.write(matminlib)
 
