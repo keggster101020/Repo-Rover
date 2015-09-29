@@ -7,5 +7,6 @@
 !*.txt
 !*.html
 !*.css
-!src/
+!repo_rover/
+!repo_rover/webReport/
 !.gitignore
