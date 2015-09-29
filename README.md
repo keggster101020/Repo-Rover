@@ -19,6 +19,7 @@ to a clean, material design webpage! Awesome tool, right? Give it a try!
 
 ## Requirements
 Python v2.0 < v3.0
+Git v1.9.X (at least)
 
 ## Preparation Overview
 _The following bulleted points will be covered in more detail below._
