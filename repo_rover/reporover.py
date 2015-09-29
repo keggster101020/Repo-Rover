@@ -23,6 +23,9 @@ totalRepos=0; #setup the counter for the total number of repositories
 cleanRepos=0; # setup the counter for the total number of clean repositories
 dirRepos=0; # setup the counter for the total number of repositories that have problems
 
+temp_dir = tempfile.mkdtemp()
+
+
 owd = os.getcwd()
 """
 This method will ge all of the git repos listed under the given
@@ -184,8 +187,6 @@ def write_report(report_info):
 
                 # wow, we have to make a temporary directory because we cant get the 
                 # package data directory
-
-                temp_dir = tempfile.mkdtemp()
 
                 os.chdir(temp_dir)
 
