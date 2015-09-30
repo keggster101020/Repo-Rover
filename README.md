@@ -18,8 +18,8 @@ return to you the status of every single git repository under that path
 to a clean, material design webpage! Awesome tool, right? Give it a try!
 
 ## Requirements
-Python v2.0 < v3.0
-Git v1.9.X (at least)
++ Python v2.0 < v3.0
++ Git v1.9.X (at least)
 
 ## Preparation Overview
 _The following bulleted points will be covered in more detail below._
@@ -110,12 +110,12 @@ respond as soon as possible!
 # Contributors
 ______
 
-+ Keegan Shudy (keggster101020)
-+ Cody Kinneer (kinneerc)
-+ Colton McCurdy (mccurdyc)
-+ Michael Camara (camaram88)
-+ Hanzhong Zheng (victorzhz)
-+ Jacob Hanko (hankoj)
++ Keegan Shudy ([keggster101020](https://github.com/keggster101020))
++ Cody Kinneer ([kinneerc](https://github.com/kinneerc))
++ Colton McCurdy ([mccurdyc](https://github.com/mccurdyc))
++ Michael Camara ([camaram88](https://github.com/camaram88))
++ Hanzhong Zheng ([victorzhz](https://github.com/victorzhz))
++ Jacob Hanko ([hankoj](https://github.com/hankoj))
 
 # License
 ______
