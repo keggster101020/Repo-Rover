@@ -1,0 +1,136 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CMPSC 280
+% Authors: Michael Camara, Colton McCurdy, Jake Hanko, Keegan Shudy, Victor Zheng, Cody Kinneer
+% Honor Code Pledge: This work is ours unless otherwise cited
+% Purpose: Presentation slides for Repo-Rover on 10/2/15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{beamer}
+\usepackage{graphicx}
+\usetheme{Frankfurt}
+\setbeamertemplate{blocks}[rounded]
+\setbeamercolor{structure}{fg=red}
+\usepackage{multicol}
+
+\usepackage{tikz-er2}  % Entity-Relation Diagram Package
+% Author: Pável Calado
+% the tikz-er2.sty package is available at:
+% http://tagus.inesc-id.pt/~pcalado/tikzer2/tikz-er2.html
+
+% Packages for use with tikz-er2 / drawing
+\usepackage{verbatim}
+\usetikzlibrary{positioning} 
+\usetikzlibrary{shadows}
+\usepackage{tikz}
+\tikzstyle{line}=[draw]
+\tikzstyle{arrow}=[draw, -latex] 
+\setbeamertemplate{headline}[default] % remove dark edge on top
+
+%% Styles for diagram nodes
+\tikzstyle{every entity} = [top color=white, bottom color=blue!30,
+draw=blue!50!black!100, drop shadow]
+\tikzstyle{every weak entity} = [drop shadow={shadow xshift=.7ex,
+shadow yshift=-.7ex}]
+\tikzstyle{every attribute} = [top color=white, bottom color=yellow!20,
+draw=yellow, node distance=1cm, drop shadow]
+\tikzstyle{every relationship} = [top color=white, bottom color=red!20,
+draw=red!50!black!100, drop shadow]
+\tikzstyle{every isa} = [top color=white, bottom color=green!20,
+draw=green!50!black!100, drop shadow]
+
+%% Create background of Mars landscape with a rover and some Git repos
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{images/landscape.png}}
+
+\begin{document}
+
+%% TITLE PAGE
+\begin{frame}
+    \centering
+    \vspace{-1in}
+    \emph{\textcolor{black}{\textbf{
+    	\Huge “Repo-Rover”\\
+    \begin{multicols}{2}
+    	\large Colton McCurdy\\Jake Hanko\\Michael Camara\\
+	\columnbreak
+		\large Keegan Shudy\\Victor Zheng\\Cody Kinneer\\
+	\end{multicols}
+    }}}
+\end{frame}
+
+%% Create white overlay over background to enhance clarity of text
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{images/landscape_white_overlay.png}}
+
+%% INTRODUCTION
+\begin{frame}
+    \centering
+    \frametitle{The Repo Problem}
+	\begin{block}{Git gaining in popularity}
+		\begin{itemize}
+			\item GitHub: 27.3 million repositories, 11 million users\textsuperscript{1}
+			\item Bitbucket: 2.5 million users\textsuperscript{2}
+			\item 1 in 3 Fortune 500 companies use Git for 60\% of their source code\textsuperscript{3}
+		\end{itemize}
+	\end{block}    
+	
+	\pause 
+	
+    \begin{block}{So many repos, so little time...}
+    		Computer scientists need a better way to maintain all of their Git repos!      
+    \end{block}
+    	
+\end{frame}    
+
+\input{sections/Requirements.tex}
+\input{sections/Design.tex}
+\input{sections/Implementation.tex}
+\input{sections/Testing.tex}
+\input{sections/Release.tex}
+
+%% FUTURE WORK
+%TODO need to revise and add onto this
+\begin{frame}
+    \centering
+    \frametitle{Future Work}
+    
+    \begin{block}{Ideas for improvement}
+    		\begin{enumerate}
+    			\item Implement a GUI
+    			\item Allow "garbage file" recognition
+    		\end{enumerate}
+    \end{block}
+    
+\end{frame}
+
+%% CONCLUSION
+
+%TODO consider adding block in here
+\begin{frame}
+    \centering
+    \frametitle{Conclusion}
+    \begin{block}{}
+    \begin{center}
+	\emph{\huge{\textbf{Your years of clutter are over: get yourself a Repo-Rover!}}}
+    \end{center}
+    \end{block}
+	\vspace{1.75cm}
+    \begin{block}{}
+    \begin{center}
+    \emph{\Large{Available Now At \emph{https://github.com/keggster101020/Repo-Rover}}}
+    \end{center}
+    \end{block}
+\end{frame}
+
+\input{sections/References.tex}
+
+% Template slide
+\begin{frame}
+	\centering
+	\frametitle{}
+	\begin{block}{}
+		
+	\end{block}
+\end{frame}
+
+\end{document} 
+
+
