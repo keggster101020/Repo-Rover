@@ -57,7 +57,8 @@ python --version
 The easiest way to get our system is to clone
 the repository to your local machine. If you are familiar with git and
 cloning repositories use the following command. Otherwise, if you are
-interested in learning git, please refer to this link for a wonderful
+interested in learning git, please refer to this
+[link](https://try.github.io/levels/1/challenges/1) for a wonderful
 git tutorial that explains the basics of using git as a tool for version
 control.
 
