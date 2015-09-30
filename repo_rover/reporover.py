@@ -70,11 +70,13 @@ param: list
 return: list or boolean
 """
 def write_reports(repos):
+        global dirRepos
 	report_stats = []
 	for repo in repos:
             print ("%s: " % repo),
             issues = git_issues(repo)
             if (issues):
+                dirRepos = dirRepos + 1
                 if (len(issues[0])==1):
                     print (FAIL+"One issue:"+ENDC)
                 else:
@@ -94,8 +96,6 @@ check the git status message to see if there are changes
 that haven't been added or committed or pushed
 """
 def has_issues(message):
-	global dirRepos;
-	dirRepos=dirRepos+1;
 	#try:
 	issues = []
 	bool_issues = False
@@ -260,7 +260,8 @@ def write_report(report_info):
 	# 	report_file.close()
 
 def main(argv):
-	global totalRepos, dirRepos, cleanRepos
+
+        global dirRepos
         
         if len(argv) > 0:
             initial_directory = argv[0]
@@ -278,16 +279,19 @@ def main(argv):
             print "No repositories found."
             sys.exit()
 
-        cleanRepos=(totalRepos-dirRepos)/totalRepos*100
 
-        print ("I found %d git repositories, %0.2f%% clean." % (len(repos), cleanRepos))
+        print ("I found %d git repositories." % len(repos))
 	index = open(temp_dir+"/index.html","w")
 
-		##create init_setup method
+	##create init_setup method
       	clean = pkgutil.get_data('repo_rover', 'webReport/clean.html')
 	index.write(clean)
 	index.close()
         write_reports(repos)
+   
+        cleanRepos=((totalRepos-dirRepos)/float(totalRepos))*100.00
+
+        print "Repos %0.0f%% clean." % cleanRepos
 
     	if os.path.exists(temp_dir + '/index.html'):
 		index_url = ('file://' + temp_dir + '/index.html')
