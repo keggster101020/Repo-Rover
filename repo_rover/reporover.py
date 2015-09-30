@@ -4,6 +4,7 @@
 Author: Keegan Shudy, Cody Kinneer
 """
 
+import argparse
 import os
 import subprocess
 import re
@@ -23,8 +24,7 @@ totalRepos=0; #setup the counter for the total number of repositories
 cleanRepos=0; # setup the counter for the total number of clean repositories
 dirRepos=0; # setup the counter for the total number of repositories that have problems
 
-temp_dir = tempfile.mkdtemp()
-
+temp_dir = "" 
 
 owd = os.getcwd()
 """
@@ -262,17 +262,25 @@ def write_report(report_info):
 def main(argv):
 
         global dirRepos
-        
-        if len(argv) > 0:
-            initial_directory = argv[0]
-			
-	    if not os.path.isdir(initial_directory):
-			print 'The directory provided is not valid please run again and provide a valid directory'				
-			sys.exit(1)
-				
-        else:
-            initial_directory = os.getcwd()
+        global temp_dir
 
+        # we will use argparse to handle cmd line arguments
+        parser = argparse.ArgumentParser(description='Analyze git repositories.')
+        parser.add_argument('search_dir',default=os.getcwd(),nargs='?',help="Root directory for git repo search") # specify a directory to search
+        parser.add_argument('-n', dest='terminal_only',action='store_true',help='Terminal output only') # flag for terminal output only
+        parser.add_argument('-o','--out',dest='report_dir',default=tempfile.mkdtemp(),help='Specify an output directory for html report') # specify web report directory 
+
+        args = parser.parse_args()
+
+        temp_dir = args.report_dir
+
+        initial_directory = args.search_dir
+
+	if not os.path.isdir(initial_directory):
+
+	    print 'The directory provided is not valid please run again and provide a valid directory'				
+	    sys.exit(1)
+				
         repos = find_git_repos(initial_directory)
 
         if (totalRepos == 0):
@@ -293,7 +301,7 @@ def main(argv):
 
         print "Repos %0.0f%% clean." % cleanRepos
 
-    	if os.path.exists(temp_dir + '/index.html'):
+    	if os.path.exists(temp_dir + '/index.html') and not args.terminal_only:
 		index_url = ('file://' + temp_dir + '/index.html')
         	webbrowser.open(index_url, new=2)
 
