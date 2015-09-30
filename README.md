@@ -88,7 +88,7 @@ Find git repositories in a given directory
 reporover "path/to/dir"
 ```
 
-[![asciicast](https://asciinema.org/a/53a9dpbi3j6og40me7eengk3i.png)](https://asciinema.org/a/53a9dpbi3j6og40me7eengk3i)
+[![asciicast](https://asciinema.org/a/3q6j0fxoa398ii29fyu11lyeh.png)](https://asciinema.org/a/3q6j0fxoa398ii29fyu11lyeh)
 
 # Requirements
 _For the full list of requirements see_
