@@ -73,8 +73,13 @@ After cloning the repository, you can install **Repo-Rover** with the
 following command:
 
 ```
-# installing reporover executable
+# OSX/Linux Installation
 sudo ./setup.py install
+```
+
+```
+# Windows Installation
+python setup.py install
 ```
 
 ### Usage
