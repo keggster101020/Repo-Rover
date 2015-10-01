@@ -28,22 +28,22 @@ _The following bulleted points will be covered in more detail below._
 + Install **Repo-Rover**
 + Usage
 
-### Launching Terminal/Command Prompt
+### Launching Terminal
 Our system, in its current state, requires you to use the
-Terminal Application (OSX, Linux) or Command Prompt (Windows).
-Launching the Terminal or Command Prompt will put you in your home directory.
+Terminal Application (OSX, Linux).
+Launching the Terminal will put you in your home directory.
 To make installing and using our system as simple for you as possible,
 we will assume that it is okay that you install your system in your home
 directory. We will not provide you with the shell commands necessary
 to navigate Terminal as this is not necessary in the usage of our system.
-After launching either Terminal or the Command Prompt,
-you may proceed with the rest of this tutorial on using **Repo-Rover**.
+After launching either Terminal,
+you may proceed with the rest of this tutorial on using `reporover`.
 
 ### Check that you have Python installed
 To check whether or not you have [Python](https://www.python.org/)
 installed type the following command in your Terminal/Command Prompt.
 Our system has been tested on a machine with Python version 2.7.9. We
-will continue to work on making it work in Python 3.
+will continue to work on making it Python 3 compatible.
 
 ```
 # Python Verion
@@ -71,7 +71,7 @@ _Note: Upon special request, we can provide our system via Universal
 Serial Bus (USB), Compact disc (CD), and even Floppy Disk._
 
 #### Installing *with* `sudo` Privileges
-After cloning the repository, you can install **Repo-Rover** with the
+After cloning the repository, you can install `reporover` with the
 following command (assuming that you have `sudo` privileges).
 
 ```
@@ -86,11 +86,6 @@ python setup.py install --user
 
 # set your path so that you can run `reporover`
 PATH=$PATH:~/.local/bin
-```
-
-```
-# Windows Installation
-python setup.py install
 ```
 
 ### Usage
@@ -122,9 +117,9 @@ reporover path/to/dir -o path/to/html/dir
 
 ## Trouble Installing or Running on Windows?
 ______
-Currently we do not support Windows, but since it is Python it should
-work. What you have to do is set your path pointing to where `reporover`
-was installed to. 
+Since Python is cross-platform, our system should work on Windows.
+However, you will have to figure out how to install as well as set your
+`Path` variable to point where `reporover` installed to.
 
 # Requirements
 ______
@@ -136,7 +131,8 @@ ______
 If you like it, hate it, or have some ideas for new features, submit a
 issue request
 [here](https://github.com/keggster101020/Repo-Rover/issues) and we will
-respond as soon as possible!
+respond as soon as possible! Again, we do not currently support
+[Windows](https://www.youtube.com/watch?v=-NsXHPq71Bs).
 
 # Contributors
 ______
