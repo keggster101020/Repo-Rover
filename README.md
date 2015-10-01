@@ -91,7 +91,20 @@ reporover
 Find git repositories in a given directory
 ```
 # find git repos in a given dir
-reporover "path/to/dir"
+reporover path/to/dir
+```
+
+### Trouble Installing or Running the Executable?
+If you are having trouble running `reporover` as an executable, it may
+be best to run it not as an executable. You can do this by using the
+following set of commands.
+
+```
+# change to where the reporover.py is kept
+cd repo_rover
+
+# run reporover without executable
+python reporover.py path/to/file
 ```
 
 [![asciicast](https://asciinema.org/a/3q6j0fxoa398ii29fyu11lyeh.png)](https://asciinema.org/a/3q6j0fxoa398ii29fyu11lyeh)
