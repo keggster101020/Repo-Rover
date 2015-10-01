@@ -54,6 +54,7 @@ python --version
 ```
 
 ### Installation
+______
 The easiest way to get our system is to clone
 the repository to your local machine. If you are familiar with git and
 cloning repositories use the following command. Otherwise, if you are
@@ -69,12 +70,22 @@ git clone https://github.com/keggster101020/Repo-Rover.git
 _Note: Upon special request, we can provide our system via Universal
 Serial Bus (USB), Compact disc (CD), and even Floppy Disk._
 
+#### Installing *with* `sudo` Privileges
 After cloning the repository, you can install **Repo-Rover** with the
-following command:
+following command (assuming that you have `sudo` privileges).
 
 ```
 # OSX/Linux Installation
 sudo ./setup.py install
+```
+
+#### Installing *without* `sudo` Privileges
+```
+# OSX/Linux Installation
+python setup.py install --user
+
+# set your path so that you can run `reporover`
+PATH=$PATH:~/.local/bin
 ```
 
 ```
@@ -83,33 +94,40 @@ python setup.py install
 ```
 
 ### Usage
+______
+Print the help menu displaying all of the excepted command-line
+arguments
+```
+# display accepted command-line args
+reporover -h
+```
+
 Find git repositories in the directory that you are currently in
 ```
-# find git repos in the current directory
+# find git repos in the current directory and output to html
 reporover
+
+# find git repos in the current directory and output to terminal
+reporover -n
 ```
+
 Find git repositories in a given directory
 ```
-# find git repos in a given dir
-reporover path/to/dir
+# find git repos in a given dir and output to terminal
+reporover -n path/to/dir
+
+# find git repos in a given dir and output to html in the given dir
+reporover path/to/dir -o path/to/html/dir
 ```
 
-### Trouble Installing or Running the Executable?
-If you are having trouble running `reporover` as an executable, it may
-be best to run it not as an executable. You can do this by using the
-following set of commands.
-
-```
-# change to where the reporover.py is kept
-cd repo_rover
-
-# run reporover without executable
-python reporover.py path/to/file
-```
-
-[![asciicast](https://asciinema.org/a/3q6j0fxoa398ii29fyu11lyeh.png)](https://asciinema.org/a/3q6j0fxoa398ii29fyu11lyeh)
+## Trouble Installing or Running on Windows?
+______
+Currently we do not support Windows, but since it is Python it should
+work. What you have to do is set your path pointing to where `reporover`
+was installed to. 
 
 # Requirements
+______
 _For the full list of requirements see_
 [requirements](https://github.com/keggster101020/Repo-Rover/blob/master/docs/RequirementsAnalysis.md).
 
