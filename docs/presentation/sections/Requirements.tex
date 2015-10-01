@@ -1,9 +1,9 @@
 % Requirements 1/  :Summary
 \begin{frame}
 	\centering
-	\frametitle{Requirements}
+	\frametitle{Introducing Repo-Rover!}
 	\begin{block}{Summary}
-		Repo-Rover must traverse a user's filesystem from given a root address, locate all Git repos contained therein, and provide relevant diagnostic information to the user.
+		Repo-Rover will traverse a user's filesystem from given a root address, locate all Git repos contained therein, and provide relevant diagnostic information to the user.
 	\end{block}
 	
 	\resizebox{11cm}{2.5cm}{%
@@ -43,7 +43,6 @@
 			\item Audience
 			\item Programming Language
 			\item Operating System
-			\item Interface (Input/Output)
 		\end{enumerate}
 	\end{block}
 \end{frame}
@@ -54,19 +53,33 @@
 	\frametitle{Requirements}
 	\begin{block}{Functional Requirements}
 		\begin{enumerate}
-			\item <1-> Filesystem traversal
+			\item <1-> Filesystem Traversal
 			\item <2->Diagnostic Summary (\textbf{Per} Repo)
 			\pause
 			\begin{itemize}
-				\item <3-> Files with untracked modifications
-				\item <3-> Files in staging area
-				\item <3-> Committed files not pushed
+				\item <2-> Files with untracked modifications
+				\item <2-> Files in staging area
+				\item <2-> Committed files not pushed
 			\end{itemize}
-			\item <4-> Diagnostic Summary (\textbf{All} Repos)
+			\item <3-> Diagnostic Summary (\textbf{All} Repos)
 			\begin{itemize}
-				\item <5-> Total number of repos
-				\item <5-> Percentage of "clean" repos
+				\item <3-> Total number of repos
+				\item <3-> Percentage of "clean" repos
 			\end{itemize}
+		\end{enumerate}		
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\centering
+	\frametitle{Requirements}
+	
+	\begin{block}{Non-Functional Requirements}
+		\begin{enumerate}
+			\item <1->Scalability
+			\item <2-> Speed
+			\item <3-> Ease of Use
+			\item <4-> Reliability
 		\end{enumerate}		
 	\end{block}
 \end{frame}
