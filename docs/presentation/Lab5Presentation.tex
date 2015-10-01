@@ -63,12 +63,27 @@ draw=green!50!black!100, drop shadow]
 %% INTRODUCTION
 \begin{frame}
     \centering
+    \frametitle{Git}
+    
+    \begin{block}{What is Git?}
+		Git is version control system that "records changes to a file or set of files over time so that you can recall specific versions later."\textsuperscript{1}
+    \end{block}
+
+    \resizebox{11cm}{5cm}{
+	    \includegraphics{images/git_diagram1.png}
+	} % end resizebox 
+\end{frame}
+     
+\begin{frame}
+
+    \centering
     \frametitle{The Repo Problem}
+
 	\begin{block}{Git gaining in popularity}
 		\begin{itemize}
-			\item GitHub: 27.3 million repositories, 11 million users\textsuperscript{1}
-			\item Bitbucket: 2.5 million users\textsuperscript{2}
-			\item 1 in 3 Fortune 500 companies use Git for 60\% of their source code\textsuperscript{3}
+			\item GitHub: 27.3 million repositories, 11 million users\textsuperscript{2}
+			\item Bitbucket: 2.5 million users\textsuperscript{3}
+			\item 1 in 3 Fortune 500 companies use Git for 60\% of their source code\textsuperscript{4}
 		\end{itemize}
 	\end{block}    
 	
@@ -77,8 +92,39 @@ draw=green!50!black!100, drop shadow]
     \begin{block}{So many repos, so little time...}
     		Computer scientists need a better way to maintain all of their Git repos!      
     \end{block}
+    
+    \resizebox{11cm}{3.0cm}{
+	    \includegraphics{images/git_diagram2.png}
+
+	} % end resizebox 
     	
-\end{frame}    
+\end{frame}
+
+\begin{frame}
+	\centering
+	\frametitle{Existing Solutions}
+	
+	\begin{block}{Git Commands}
+		\begin{itemize}
+			\item git status
+			\item git log
+		\end{itemize}
+	\end{block}
+	
+	\pause
+	
+	\begin{block}{External Programs}
+		\begin{itemize}
+			\item Gitinspector: https://github.com/ejwa/gitinspector
+			\item GitStats: http://gitstats.sourceforge.net/
+		\end{itemize}
+	\end{block}
+	
+	\
+
+\end{frame}
+
+%% Add related works??
 
 \input{sections/Requirements.tex}
 \input{sections/Design.tex}
@@ -92,17 +138,17 @@ draw=green!50!black!100, drop shadow]
     \centering
     \frametitle{Future Work}
     
-    \begin{block}{Ideas for improvement}
+    \begin{block}{Ideas for Improvement}
     		\begin{enumerate}
     			\item Implement a GUI
     			\item Allow "garbage file" recognition
+    			\item Add Windows support
     		\end{enumerate}
     \end{block}
     
 \end{frame}
 
 %% CONCLUSION
-
 %TODO consider adding block in here
 \begin{frame}
     \centering
@@ -121,15 +167,6 @@ draw=green!50!black!100, drop shadow]
 \end{frame}
 
 \input{sections/References.tex}
-
-% Template slide
-\begin{frame}
-	\centering
-	\frametitle{}
-	\begin{block}{}
-		
-	\end{block}
-\end{frame}
 
 \end{document} 
 
