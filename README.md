@@ -2,6 +2,7 @@
 ______
 
 ## Do you use git?
+______
 Does the thought of un-clean [git](http://git-scm.com/docs/gittutorial) repositories keep you up at night? If
 you have a lot of git repositories on your computer, chances are,
 lurking on your harddrive is a un-committed file, waiting to cause a
@@ -10,26 +11,30 @@ development process and putting your team behind.
 Do not fear, *Repo-Rover* is here!
 
 ## Repo-Rover Overview
+______
 **Repo-Rover** is a command-line tool used to track the statuses of your
 local git repositories! You may be thinking, "Don't we have a
 `git-status` to do that exact thing?" The answer is, your are exactly
 right! **Repo-Rover** is a `git-status` for your entire collection of
 git repositories on your machine! Give **Repo-Rover** a path and it will
 return to you the status of every single git repository under that path
-to a clean, material design web-page! Awesome tool, right? [Give it a try](https://github.com/keggster101020/Repo-Rover/archive/master.zip)!
+to a clean, material design, web-page! Awesome tool, right? [Give it a try](https://github.com/keggster101020/Repo-Rover/archive/master.zip)!
 
 ## Requirements
+______
 + Python v2.0 < v3.0
 + Git v1.9.X (at least)
 
 ## Preparation Overview
+______
 _The following bulleted points will be covered in more detail below._
-+ Launch Terminal/Command Prompt
++ Launch Terminal
 + Check that you have `Python` installed
 + Install **Repo-Rover**
 + Usage
 
 ### Launching Terminal
+______
 Our system, in its current state, requires you to use the
 Terminal Application (OSX, Linux).
 Launching the Terminal will put you in your home directory.
@@ -41,8 +46,9 @@ After launching either Terminal,
 you may proceed with the rest of this tutorial on using `reporover`.
 
 ### Check that you have Python installed
+______
 To check whether or not you have [Python](https://www.python.org/)
-installed type the following command in your Terminal/Command Prompt.
+installed type the following command in your Terminal.
 Our system has been tested on a machine with Python version 2.7.9. We
 will continue to work on making it Python 3 compatible.
 
@@ -69,7 +75,8 @@ control.
 git clone https://github.com/keggster101020/Repo-Rover.git
 ```
 _Note: Upon special request, we can provide our system via Universal
-Serial Bus (USB), Compact disc (CD), and even Floppy Disk._
+Serial Bus (USB), Compact disc (CD), and even [Floppy
+Disk](https://www.youtube.com/watch?v=ba14uJFvqMs)._
 
 #### Installing *with* `sudo` Privileges
 After cloning the repository, you can install `reporover` with the
@@ -116,7 +123,7 @@ reporover -n path/to/dir
 reporover path/to/dir -o path/to/html/dir
 ```
 
-## Trouble Installing or Running on Windows?
+## Trouble Installing or Running on [Windows](https://www.youtube.com/watch?v=-NsXHPq71Bs)?
 ______
 Since Python is cross-platform, our system should work on Windows.
 However, you will have to figure out how to install as well as set your
@@ -133,7 +140,7 @@ If you like it, hate it, or have some ideas for new features, submit a
 issue request
 [here](https://github.com/keggster101020/Repo-Rover/issues) and we will
 respond as soon as possible! Again, we do not currently support
-[Windows](https://www.youtube.com/watch?v=-NsXHPq71Bs).
+[Windows](https://www.youtube.com/watch?v=Kwma71yl8mU).
 
 # Contributors
 ______
