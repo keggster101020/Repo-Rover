@@ -6,7 +6,7 @@ ______
 Does the thought of un-clean [git](http://git-scm.com/docs/gittutorial) repositories keep you up at night? If
 you have a lot of git repositories on your computer, chances are,
 lurking on your harddrive is a un-committed file, waiting to cause a
-[merge conflict](https://akk.li/pics/anne.jpg), slowing down the
+merge conflict, slowing down the
 development process and putting your team behind.
 Do not fear, *Repo-Rover* is here!
 
