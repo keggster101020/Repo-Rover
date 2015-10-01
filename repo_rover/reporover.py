@@ -301,7 +301,7 @@ def main(argv):
 
         print "Repos %0.0f%% clean." % cleanRepos
 
-    	if os.path.exists(temp_dir + '/index.html') and not args.terminal_only:
+    	if os.path.exists(temp_dir + '/index.html') and not args.terminal_only and not cleanRepos == 100:
 		index_url = ('file://' + temp_dir + '/index.html')
         	webbrowser.open(index_url, new=2)
 
