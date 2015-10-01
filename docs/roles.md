@@ -3,7 +3,7 @@ ______
 
 As a team we collaborated extensively throughout this entire project.
 We have utilized *Slack*, Slacks integration with
-(Github)[https://github.com/], and personal meetings to share
+[Github](https://github.com/), and personal meetings to share
 ideas, delegate tasks, and to validate and verify our programming
 systems product at many stages. However, the following description
 lists some of the specific tasks we were each responsible for:
