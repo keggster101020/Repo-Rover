@@ -2,20 +2,21 @@
 ______
 
 ## Do you use git?
-Do you use [git](https://git-scm.com/) as a way to manage versions of
-your software or documents? If so, I imagine you have a number of git
-repositories on your local computer. Some of these repositories may not
-be as clean as you may have thought! Now, you can use **Repo-Rover** to
-detect these un-committed, un-tracked, or un-pushed files!
+Does the thought of un-clean [git](http://git-scm.com/docs/gittutorial) repositories keep you up at night? If
+you have a lot of git repositories on your computer, chances are,
+lurking on your harddrive is a un-committed file, waiting to cause a
+[merge conflict](https://akk.li/pics/anne.jpg), slowing down the
+development process and putting your team behind.
+Do not fear, *Repo-Rover* is here!
 
 ## Repo-Rover Overview
 **Repo-Rover** is a command-line tool used to track the statuses of your
 local git repositories! You may be thinking, "Don't we have a
-`git-status` to do that exact thing?" The answer is your are exactly
-correct! **Repo-Rover** is a `git-status` for your entire collection of
+`git-status` to do that exact thing?" The answer is, your are exactly
+right! **Repo-Rover** is a `git-status` for your entire collection of
 git repositories on your machine! Give **Repo-Rover** a path and it will
 return to you the status of every single git repository under that path
-to a clean, material design webpage! Awesome tool, right? Give it a try!
+to a clean, material design web-page! Awesome tool, right? [Give it a try](https://github.com/keggster101020/Repo-Rover/archive/master.zip)!
 
 ## Requirements
 + Python v2.0 < v3.0
