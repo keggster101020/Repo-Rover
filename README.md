@@ -64,7 +64,7 @@ control.
 
 ```
 # clone Repo-Rover to your local machine using git
-git clone git@github.com:keggster101020/Repo-Rover.git
+git clone https://github.com/keggster101020/Repo-Rover.git
 ```
 _Note: Upon special request, we can provide our system via Universal
 Serial Bus (USB), Compact disc (CD), and even Floppy Disk._
