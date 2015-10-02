@@ -98,6 +98,9 @@ PATH=$PATH:~/.local/bin
 
 ### Usage
 ______
+
+[![asciicast](https://asciinema.org/a/02a3u1ci1s8q4cjwxqbofkd03.png)](https://asciinema.org/a/02a3u1ci1s8q4cjwxqbofkd03)
+
 Print the help menu displaying all of the excepted command-line
 arguments
 ```
