@@ -1,7 +1,7 @@
 # Requirements Analysis
 
 ## Repo-Rover Summary
-The customer requests a diagnostic tool to analyze all `Git` repositories located in a user's filesystem.  The purpose of this tool is to indicate warning signs that might need to be addressed by the user, such as untracked file modifications or files that have been committed, but never pushed to the remote repository.  The target audience for this tool will be other computer scientists who need such a tool to help manage and maintain their large number of repositories.  Both the input and output should be console-based and largely automated.  The program should accept a root directory from the user's filesystem, and then traverse the system to identify every `Git` repository contained therein.  It should then analyze and output all warning signs found within each individual repository, in addition to displaying a collection of summary statistics for all repositories examined.  The customer expects a functional programming systems product by Friday, 10/2/15.  Given the short time limit for this request, the customer suggests an incremental software development approach, preferring a few finished features over many partially completed ones.
+Repo-Rover is a diagnostic tool for analyzing all `Git` repositories located in a user's filesystem.  The purpose of this tool is to indicate warning signs that might need to be addressed by the user, such as untracked file modifications or files that have been committed, but never pushed to the remote repository.  The target audience for this tool will be other computer scientists who need such a tool to help manage and maintain their large number of repositories.  Both the input and output should be console-based and largely automated.  The program should accept a root directory from the user's filesystem, and then traverse the system to identify every `Git` repository contained therein.  It should then analyze and output all warning signs found within each individual repository, in addition to displaying a collection of summary statistics for all repositories examined.  The fully functional programming systems product is due by Friday, 10/2/15.  Given the short time limit for this request, an incremental software development approach should be used, such that a few finished features are preferred over many partially completed ones.
 
 ---
 
@@ -14,7 +14,7 @@ Currently, there does not exist an efficient solution for analyzing large volume
 
 1. __Incremental Development__
 
-	The customer requests that we use an incremental build model while developing the system.  He has emphasized his preference for having a few fully functional features over having many partially functioning ones when the system is initially released.
+	An incremental build model should be used while developing the system.  He has emphasized his preference for having a few fully functional features over having many partially functioning ones when the system is initially released.
 	
 2. __Documentation__
 
@@ -38,11 +38,11 @@ Currently, there does not exist an efficient solution for analyzing large volume
 	
 3. __Operating System__
 
-	The customer ultimately wants this system to work across all operating systems, such that any computer scientist will be able to use it regardless of the device they choose.
+	The system system should work across all operating systems, such that any computer scientist will be able to use it regardless of the device they choose.
 
 4. __Input and Output Format__
 
-	The customer requests the default implementation of the system to exclusively use the console for input and output, although the addition of a graphical user interface (GUI) would be permitted if resources allow (see *Non-Functional Requirements* for more details).
+	The default implementation of the system should exclusively use the console for input and output, although the addition of a graphical user interface (GUI) would be permitted if resources allow (see *Non-Functional Requirements* for more details).
 	
 	*Input*: The user should specify a root address as a command line argument before program execution.  This address will determine the "starting point" for the system as it traverses all subdirectories therein.  Command line arguments/flags may also be used to control the use of certain features, at our discretion.
 	
@@ -139,4 +139,4 @@ Currently, there does not exist an efficient solution for analyzing large volume
 	
 2. __Graphical User Interface (GUI)__
 
-	The default implementation requested by the customer involves exclusive use of the console for input and output.  However, if time and resources permit, then a GUI could be added to improve the system's ease of use and the clarity of results.  No formating or other stylistic constraints have been determined by the customer for such an interface, if we decide to implement it. 
+	The default implementation involves exclusive use of the console for input and output.  However, if time and resources permit, then a GUI could be added to improve the system's ease of use and the clarity of results.  No formating or other stylistic constraints have been determined for such an interface, if we decide to implement it. 
